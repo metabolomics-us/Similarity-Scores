@@ -119,7 +119,7 @@ class spectra_similarity:
             self.score_sd[i] = np.std(self.score_matrix[i], axis = 0)
             self.score_mean[i] = np.mean(self.score_matrix[i], axis = 0)
 
-    def similarity_plot(self, metric = "mean"):
+    def similarity_plot(self, metric = "mean"): #default is to graph 'mean' 
         if metric == "mid_val":
             for i in self.bins:
                 x = list(range(1,self.n_spectrum[i]+1))
@@ -153,7 +153,7 @@ class spectra_similarity:
                 x = list(range(1,self.n_spectrum[i]+1))
                 plt.plot(x, self.score_sd[i], label=f'bin: {i}')
                 plt.xlabel('Count of spectra in the consensus spectra') 
-                plt.ylabel('Score') # y axis is score
+                plt.ylabel('Score') 
                 plt.title('Standard Deviation')
                 plt.legend()
                 plt.rc('font', size=15) 
@@ -166,7 +166,7 @@ class spectra_similarity:
                 x = list(range(1,self.n_spectrum[i]+1))
                 plt.plot(x, self.score_mean[i], label=f'bin: {i}')
                 plt.xlabel('Count of spectra in the consensus spectra') 
-                plt.ylabel('Score') # y axis is score
+                plt.ylabel('Score')
                 plt.ylim((0.8,1))                
                 plt.title('Mean for Bin ' + str(i))
                 #plt.legend()
@@ -182,33 +182,34 @@ class spectra_similarity:
         x = list(range(1,self.n_spectrum[selected_bin]+1))
         for j in range(len(x)):
             plt.plot(x, self.score_matrix[selected_bin][j], 'lightgrey')
+            
         plt.plot(x, self.score[selected_bin], 'brown', label='mid value') 
         plt.plot(x, self.score_median[selected_bin], 'r', label='median')   
         plt.plot(x, self.score_mean[selected_bin], 'b', label='mean') 
         plt.plot(x, self.score_sd[selected_bin], 'g', label='standard devation') 
         plt.xlabel('Count of spectra in the consensus spectra') 
-        plt.ylabel('Score') # y axis is score
+        plt.ylabel('Score') 
         plt.title(f'Similarity Curves with different        reference spectrum for bin: {selected_bin}')
         plt.legend()
         plt.show()
  
 
 # To test the code --> 
-# spectra_out = spectra_similarity(filename = 'result.csv', shuffle = True)
+spectra_out = spectra_similarity(filename = 'result.csv', shuffle = True)
 
-# start_time = time.time()
-# spectra_out.cross_ref()
-# end_time = time.time()
-# end_time-start_time
-
-
-# spectra_out.score
-# spectra_out.similarity_plot()    
-# spectra_out.plot_metrics()
+start_time = time.time()
+spectra_out.cross_ref()
+end_time = time.time()
+end_time-start_time
 
 
-# spectra_out.similarity_plot()
-# spectra_out.similarity_plot(metric = "median")
-# spectra_out.similarity_plot(metric = "std")
-# spectra_out.similarity_plot(metric ="mean")
+spectra_out.score
+spectra_out.similarity_plot()    
+spectra_out.plot_metrics()
+
+
+spectra_out.similarity_plot()
+spectra_out.similarity_plot(metric = "median")
+spectra_out.similarity_plot(metric = "std")
+spectra_out.similarity_plot(metric ="mean")
 
