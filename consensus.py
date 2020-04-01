@@ -197,19 +197,16 @@ class spectra_similarity:
 # To test the code --> 
 spectra_out = spectra_similarity(filename = 'result.csv', shuffle = True)
 
-start_time = time.time()
 spectra_out.cross_ref()
-end_time = time.time()
-end_time-start_time
-
 
 spectra_out.score
-spectra_out.similarity_plot()    
+spectra_out.similarity_plot()  
+# get all the plots  
 spectra_out.plot_metrics()
 
 
-spectra_out.similarity_plot()
+spectra_out.similarity_plot() # mean graph
 spectra_out.similarity_plot(metric = "median")
 spectra_out.similarity_plot(metric = "std")
-spectra_out.similarity_plot(metric ="mean")
+spectra_out.similarity_plot(metric ="mid_val")
 
