@@ -9,6 +9,5 @@
 * Used Cosine Similarity Method to compute the score 
 
 ### Similarity Score Graph
-* Y-axis: Comparing consensus spectra vs different intensity values (different reference intensity values)
-at the same time
+* Y-axis: Score Value 
 * X-axis: Count of Consensus Spectra
