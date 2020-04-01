@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[2]:
-
-
 from pandas import read_csv
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -15,21 +9,10 @@ import numpy as np
 import seaborn as sns
 import time
 
-
-# In[1]:
-
-
 pip install -e "git+https://github.com/metabolomics-us/pyspec.git@similarity#egg=version_subpkg&subdirectory=pyspec" --no-deps
-
-
-# In[ ]:
-
 
 data = read_csv('result.csv')
 data.sample(frac=1)
-
-
-# In[107]:
 
 
 class spectra_similarity:
@@ -208,63 +191,24 @@ class spectra_similarity:
         plt.title(f'Similarity Curves with different        reference spectrum for bin: {selected_bin}')
         plt.legend()
         plt.show()
+ 
 
-
-# In[108]:
-
-
-spectra_out = spectra_similarity(filename = 'data.csv', shuffle = True)
-
-
-# In[66]:
-
-
-# spectra_out.data
-# spectra_out.bins
-# spectra_out.n_spectrum
-# spectra_out.intensity_consensus
-
-
-# In[79]:
-
+# To test the code --> 
+# spectra_out = spectra_similarity(filename = 'result.csv', shuffle = True)
 
 # start_time = time.time()
-# spectra_out.compute_score(ref_index = 6)
+# spectra_out.cross_ref()
 # end_time = time.time()
 # end_time-start_time
 
 
-# In[109]:
+# spectra_out.score
+# spectra_out.similarity_plot()    
+# spectra_out.plot_metrics()
 
 
-start_time = time.time()
-spectra_out.cross_ref()
-end_time = time.time()
-end_time-start_time
-
-
-# In[110]:
-
-
-spectra_out.score
-spectra_out.similarity_plot()
-# get all the plots
-
-
-# In[70]:
-
-
-spectra_out.plot_metrics()
-
-
-# In[71]:
-
-
-spectra_out.plot_metrics('2')
-
-
-# In[72]:
-
-
-spectra_out.plot_metrics('34,178')
+# spectra_out.similarity_plot()
+# spectra_out.similarity_plot(metric = "median")
+# spectra_out.similarity_plot(metric = "std")
+# spectra_out.similarity_plot(metric ="mean")
 
