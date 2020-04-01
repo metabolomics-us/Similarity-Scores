@@ -119,13 +119,13 @@ class spectra_similarity:
             self.score_sd[i] = np.std(self.score_matrix[i], axis = 0)
             self.score_mean[i] = np.mean(self.score_matrix[i], axis = 0)
 
-    def similarity_plot(self, metric = "mean"): #default is to graph 'mean' 
+    def similarity_plot(self, metric = "mean"): #default is 'mean' 
         if metric == "mid_val":
             for i in self.bins:
                 x = list(range(1,self.n_spectrum[i]+1))
                 plt.plot(x, self.score_mid_val[i], label=f'bin: {i}')
                 plt.xlabel('Count of spectra in the consensus spectra') 
-                plt.ylabel('Score') # y axis is score
+                plt.ylabel('Score')
                 plt.ylim((0.8,1))
                 plt.title('Mid-Value')
                 plt.legend()
@@ -139,7 +139,7 @@ class spectra_similarity:
                 x = list(range(1,self.n_spectrum[i]+1))
                 plt.plot(x, self.score_median[i], label=f'bin: {i}')
                 plt.xlabel('Count of spectra in the consensus spectra') 
-                plt.ylabel('Score') # y axis is score     
+                plt.ylabel('Score')  
                 plt.ylim((0.8,1))                
                 plt.title('Median')
                 plt.legend()
