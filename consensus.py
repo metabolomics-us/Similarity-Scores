@@ -237,4 +237,10 @@ spectra_out.similarity_plot() # mean graph
 spectra_out.similarity_plot(metric = "median")
 spectra_out.similarity_plot(metric = "std")
 spectra_out.similarity_plot(metric ="mid_val")
+                  
+ # To test Entropy --> 
+spectra_out = spectra_similarity(filename = 'result.csv', shuffle = False)
+                  
+spectra_out.compute_entropy()
+spectra_out.plot_entropy(selected_bin = '34,178')           
 
