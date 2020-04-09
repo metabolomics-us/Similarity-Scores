@@ -226,7 +226,8 @@ class spectra_similarity:
         plt.show() 
 
 
-# To test the code --> 
+##############################################################################################################################
+ # To test the code --> 
 spectra_out = spectra_similarity(filename = 'result.csv', shuffle = True)
 
 spectra_out.cross_ref()
