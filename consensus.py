@@ -171,7 +171,7 @@ class spectra_similarity:
                 x = list(range(1,self.n_spectrum[i]+1))
                 plt.plot(x, self.score_sd[i], label=f'bin: {i}')
                 plt.xlabel('Count of spectra in the consensus spectra') 
-                plt.ylabel('Score') # y axis is score
+                plt.ylabel('Score') 
                 plt.title('Standard Deviation')
                 plt.legend()
                 plt.rc('font', size=15) 
@@ -184,7 +184,7 @@ class spectra_similarity:
                 x = list(range(1,self.n_spectrum[i]+1))
                 plt.plot(x, self.score_mean[i], label=f'bin: {i}')
                 plt.xlabel('Count of spectra in the consensus spectra') 
-                plt.ylabel('Score') # y axis is score
+                plt.ylabel('Score') 
                 plt.ylim((0.8,1))                
                 plt.title('Mean for Bin ' + str(i))
                 #plt.legend()
@@ -205,9 +205,9 @@ class spectra_similarity:
         plt.plot(x, self.score_mean[selected_bin], 'b', label='mean') 
         plt.plot(x, self.score_sd[selected_bin], 'g', label='standard devation') 
         plt.xlabel('Count of spectra in the consensus spectra') 
-        plt.ylabel('Score') # y axis is score
-        plt.title(f'Similarity Curves with different/
-                  reference spectrum for bin: {selected_bin}')
+        plt.ylabel('Score') 
+        plt.title(f'Similarity Curves with different\
+        reference spectrum for bin: {selected_bin}')
         plt.legend()
         plt.show()
 
@@ -215,7 +215,11 @@ class spectra_similarity:
         plt.rc('font', size=15) 
         plt.figure(figsize=(20,10))
         x = list(range(1,self.n_spectrum[selected_bin]+1))
-        plt.plot(x, self.entropy[selected_bin], 'black') 
+        y = self.entropy[selected_bin]
+        y_min = np.min(y)
+        y_max = np.max(y)
+        y_scale = (y-y_min)/(y_max-y_min)   # min/max scale
+        plt.plot(x, y_scale, 'black') 
         plt.xlabel('Count of spectra in the consensus spectra') 
         plt.ylabel('Entropy') # y axis is score
         plt.title(f'Entropy Curves for bin: {selected_bin}')
