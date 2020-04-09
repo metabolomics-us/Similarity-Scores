@@ -246,5 +246,40 @@ spectra_out.similarity_plot(metric ="mid_val")
 spectra_out = spectra_similarity(filename = 'result.csv', shuffle = False)
                   
 spectra_out.compute_entropy()
-spectra_out.plot_entropy(selected_bin = '34,178')           
+spectra_out.plot_entropy(selected_bin = '34,178')    
 
+# To graoh entropy average samples --> 
+spectra_out.bins
+
+samples_entropy = {}
+average_entropy = {}
+for i in spectra_out.bins:
+    samples_entropy[i] = []
+    average_entropy[i] = []
+
+num_samples = 200
+for i in range(num_samples):
+    spectra_out = spectra_similarity(filename = 'data.csv', shuffle = True)
+    spectra_out.compute_entropy()
+    for j in spectra_out.bins:
+        samples_entropy[j].append(spectra_out.entropy[j])
+        
+ for i in spectra_out.bins:
+    average_entropy[i] = np.mean(samples_entropy[i], axis = 0)      
+ 
+
+ def plot_entropy(average_entropy, selected_bin = '18,223'):
+    plt.rc('font', size=15) 
+    plt.figure(figsize=(20,10))
+    y = average_entropy[selected_bin]
+    x = list(range(1,len(y)+1))    
+    y_min = np.min(y)
+    y_max = np.max(y)
+    y_scale = (y-y_min)/(y_max-y_min)
+    plt.plot(x, y_scale, 'black') 
+    plt.xlabel('Count of spectra in the consensus spectra') 
+    plt.ylabel('Entropy') # y axis is score
+    plt.title(f'Entropy Curves for bin: {selected_bin}')
+    plt.show() 
+    
+    plot_entropy(average_entropy)
